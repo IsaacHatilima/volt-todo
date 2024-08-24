@@ -13,7 +13,10 @@ new class extends Component {
 <x-layouts.app>
     @volt()
         <div>
-            hello
+            @for ($i = 0; $i < 550; $i++)
+                <h1>Hello</h1>
+            @endfor
+
         </div>
     @endvolt
 </x-layouts.app>

@@ -5,7 +5,12 @@ use function Laravel\Folio\name;
 
 name('login');
 new class extends Component {
-
+    public function mount()
+    {
+        if(auth()->user()) {
+            return redirect()->intended('home');
+        }
+    }
 } ?>
 
 <x-layouts.guest>

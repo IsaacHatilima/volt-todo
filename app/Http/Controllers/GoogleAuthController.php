@@ -32,6 +32,8 @@ class GoogleAuthController extends Controller
             [
                 'email' => $googleUser->email,
                 'password' => Str::random(),
+                'email_verified_at' => now(),
+                'last_login' => now(),
                 'social_password' => true
             ]
         );
