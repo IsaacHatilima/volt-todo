@@ -24,7 +24,7 @@ class GoogleAuthController extends Controller
         $googleUser = $driver->stateless()->user();
 
         if (! isset($googleUser->user['given_name']) || ! isset($googleUser->user['family_name'])) {
-            return redirect()->route('login')->with(['invalid_user' => 'Your Google account is missing names.']);
+            return redirect()->route('login')->with(['error' => 'Your Google account is missing names.']);
         }
 
         $user = User::firstOrCreate(
