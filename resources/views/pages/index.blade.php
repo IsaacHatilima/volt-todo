@@ -44,7 +44,7 @@ new class extends Component {
 
                 <x-button submit="true" rounded="md" color="primary" size="md" class="w-full">
                     Login
-                    <x-heroicon-s-arrow-right-circle class="w-6 h-6 ml-2 hover:bg-red-500"/>
+                    <x-heroicon-s-arrow-right-circle class="w-6 h-6 ml-2"/>
                 </x-button>
 
                 @if ($errors->get('error'))
@@ -74,7 +74,7 @@ new class extends Component {
                 </div>
 
                 <div id="third-party-auth" class="flex flex-wrap items-center justify-center">
-                    <a href="{{ route('google.redirect') }}" class="flex justify-center w-full p-2 py-3 m-1 duration-300 ease-in-out rounded-lg shadow-lg hover:scale-105 dark:bg-dark-background">
+                    <a href="{{ route('google.redirect') }}" class="flex justify-center w-full p-2 py-3 m-1 duration-300 ease-in-out hover:scale-105 rounded-lg shadow-lg dark:bg-dark-background">
                         <img class="max-w-[25px]" src="https://ucarecdn.com/8f25a2ba-bdcf-4ff1-b596-088f330416ef/"
                             alt="Google" />
                     </a>

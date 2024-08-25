@@ -3,6 +3,6 @@
 
 Hi {{ $profile->first_name }}, welcome to ToDo Ultimate, let us help you get productive. 🥳📆
 
-Regards,<br>
+Happy jotting,<br>
 {{ config('app.name') }} Team
 </x-mail::message>

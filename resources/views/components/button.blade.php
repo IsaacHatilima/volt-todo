@@ -1,10 +1,10 @@
 @props([
-    'color' => 'primary', //pass in
-    'size' => 'md', //pass in
+    'color' => 'primary', // pass in
+    'size' => 'md', // pass in
     'tag' => 'button',
     'href' => '/',
-    'submit' => false, //pass in
-    'rounded' => 'md' //pass in
+    'submit' => false, // pass in
+    'rounded' => 'md' // pass in
 ])
 
 @php
@@ -28,24 +28,34 @@
 @endphp
 
 @php
-switch ($tag ?? 'button') {
-    case 'button':
-        $tagAttr = ($submit) ? 'button type="submit"' : 'button type="button"';
-        $tagClose = 'button';
-        break;
-    case 'a':
-        $link = $href ?? '';
-        $tagAttr = 'a  href="' . $link . '"';
-        $tagClose = 'a';
-        break;
-    default:
-        $tagAttr = 'button type="button"';
-        $tagClose = 'button';
-        break;
-}
+    switch ($tag ?? 'button') {
+        case 'button':
+            $tagAttr = ($submit) ? 'button type="submit"' : 'button type="button"';
+            $tagClose = 'button';
+            break;
+        case 'a':
+            $link = $href ?? '';
+            $tagAttr = 'a  href="' . $link . '"';
+            $tagClose = 'a';
+            break;
+        default:
+            $tagAttr = 'button type="button"';
+            $tagClose = 'button';
+            break;
+    }
 @endphp
 
 <{!! $tagAttr !!} {!! $attributes->merge([
-    'class' => 'cursor-pointer inline-flex items-center p-4 justify-center disabled:opacity-50 font-semibold focus:outline-none shadow-lg '. $typeClasses.$sizeClasses]) !!}>
-    {{ $slot }}
+    'class' => 'cursor-pointer inline-flex items-center p-4 justify-center disabled:opacity-50 font-semibold focus:outline-none shadow-lg duration-300 ease-in-out hover:scale-105 '. $typeClasses.$sizeClasses,
+    'wire:loading.attr' => 'disabled', // Disable the button while loading
+    'wire:target' => $attributes->wire('click')->value(), // Target the event that triggers loading
+]) !!}>
+<span wire:loading wire:target="{{ $attributes->wire('click')->value() }}" class="mr-2">
+        <!-- Spinner SVG or any spinner icon you prefer -->
+        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+        </svg>
+    </span>
+{{ $slot }}
 </{{ $tagClose }}>
