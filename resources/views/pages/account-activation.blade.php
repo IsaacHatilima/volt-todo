@@ -53,7 +53,7 @@ new class extends Component {
             $this->tokenState = 0; // Token is valid and user is verified
             $this->dispatch('verified');
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->tokenState = 3; // An error occurred
         }
 
@@ -77,8 +77,8 @@ new class extends Component {
                 Request New Token
                 <x-heroicon-s-arrow-right-circle class="w-6 h-6 ml-2"/>
             </x-button>
-        @else($this->tokenState == 3)
-            <x-alert type="warning" error="Whachu doin'? Invalid Token."/>
+        @else
+            <x-alert type="warning" error="Oh Oh'? Invalid Token."/>
             <x-button tag="a" href="/" rounded="md" color="info" size="md" class="w-1/2 mt-4">
                 <x-heroicon-s-arrow-left-circle class="w-6 h-6 mr-2"/>
                 Back To Login
