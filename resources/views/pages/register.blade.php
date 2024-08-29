@@ -45,8 +45,9 @@ new class extends Component {
             'last_name' => ucwords($this->last_name)
         ]);
 
-        $this->created = true;
-        $this->dispatch('account-created');
+        Auth::loginUsingId($user->id);
+
+        $this->redirectRoute('home');
     }
 } ?>
 
@@ -108,15 +109,5 @@ new class extends Component {
         </div>
     </x-card>
     @endvolt
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.addEventListener('account-created', function () {
-                setTimeout(function () {
-                    window.location.href = "{{ route('login') }}";
-                }, 2000); // 2 seconds delay before redirect
-            });
-        });
-    </script>
 
 </x-layouts.guest>

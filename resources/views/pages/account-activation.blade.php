@@ -51,7 +51,10 @@ new class extends Component {
             ]);
 
             $this->tokenState = 0; // Token is valid and user is verified
-            $this->dispatch('verified');
+
+            Auth::loginUsingId($user->id);
+
+            $this->redirectRoute('home');
 
         } catch (Exception $e) {
             $this->tokenState = 3; // An error occurred
@@ -87,11 +90,4 @@ new class extends Component {
     </div>
     @endvolt
 
-    <script>
-        document.addEventListener('verified', function () {
-            setTimeout(function () {
-                window.location.href = "{{ route('login') }}";
-            }, 2000);
-        });
-    </script>
 </x-layouts.guest>

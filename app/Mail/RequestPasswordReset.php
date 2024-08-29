@@ -2,25 +2,26 @@
 
 namespace App\Mail;
 
-use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class AccountWithSocialCreated extends Mailable implements ShouldQueue
+class RequestPasswordReset extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
+
+    public string $url;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(public Profile $profile)
+    public function __construct(public User $user, string $url)
     {
-
+        $this->url = $url;
     }
 
     /**
@@ -29,7 +30,7 @@ class AccountWithSocialCreated extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'ToDo Ultimate Account Created.',
+            subject: 'Password Reset',
         );
     }
 
@@ -39,14 +40,18 @@ class AccountWithSocialCreated extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.account-with-social-created',
+            markdown: 'mail.request-password-reset',
+            with: [
+                'name' => $this->user,
+                'url' => $this->url,
+            ],
         );
     }
 
     /**
      * Get the attachments for the message.
      *
-     * @return array<int, Attachment>
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
     public function attachments(): array
     {

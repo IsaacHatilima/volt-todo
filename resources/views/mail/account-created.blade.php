@@ -11,7 +11,7 @@ Link expires in 30 minutes.
 Verify
 </x-mail::button>
 
-Link: {{ $url }}
+Link: <br> {{ $url }}
 
 Happy jotting,<br>
 {{ config('app.name') }} Team

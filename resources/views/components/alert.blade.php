@@ -1,7 +1,7 @@
 @props(['type', 'error'])
 
 @if($error)
-    <div role="alert" class="alert alert-{{ $type }}">
+    <div role="alert" class="alert alert-{{$type}}">
         @if( $type == 'success' )
             <x-heroicon-c-shield-check class="w-10 h-10 text-white"/>
         @else
