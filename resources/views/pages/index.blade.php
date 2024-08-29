@@ -34,7 +34,7 @@ new class extends Component {
         $key = $this->email . '|' . request()->ip();
 
         // Check if the rate limit has been exceeded
-        if (RateLimiter::tooManyAttempts($key, 1)) {
+        if (RateLimiter::tooManyAttempts($key, 5)) {
             return back()->with(['error' => 'Too many login attempts. Please try again in a few minutes.']);
         }
 

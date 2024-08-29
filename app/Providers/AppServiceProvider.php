@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
             $ip = $request->ip();
 
             // Limit to 5 attempts per minute per email and IP combination
-            return Limit::perMinute(1)->by($ip);
+            return Limit::perMinute(5)->by($ip);
         });
     }
 }
