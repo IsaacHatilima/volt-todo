@@ -10,18 +10,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class RequestPasswordReset extends Mailable implements ShouldQueue
+class SendAuthCode extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public string $url;
+    public string $code;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(public User $user, string $url)
+    public function __construct(public User $user, string $code)
     {
-        $this->url = $url;
+        $this->code = $code;
     }
 
     /**
@@ -30,7 +30,7 @@ class RequestPasswordReset extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Password Reset',
+            subject: 'Auth Code',
         );
     }
 
@@ -40,10 +40,10 @@ class RequestPasswordReset extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.request-password-reset',
+            markdown: 'mail.send-auth-code',
             with: [
                 'user' => $this->user,
-                'url' => $this->url,
+                'code' => $this->code,
             ],
         );
     }
@@ -58,3 +58,4 @@ class RequestPasswordReset extends Mailable implements ShouldQueue
         return [];
     }
 }
+

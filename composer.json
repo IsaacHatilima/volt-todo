@@ -13,7 +13,11 @@
         "laravel/socialite": "^5.15",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
-        "livewire/volt": "^1.0"
+        "livewire/volt": "^1.0",
+        "owenvoke/blade-fontawesome": "^2.6",
+        "paragonie/constant_time_encoding": "^2.7",
+        "ryangjchandler/blade-tabler-icons": "^2.3",
+        "usernotnull/tall-toasts": "^2.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

@@ -20,4 +20,3 @@ new class extends Component {
         </div>
     @endvolt
 </x-layouts.app>
-~
