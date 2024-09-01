@@ -10,6 +10,8 @@ new class extends Component {
     public string $first_name;
     public string $last_name;
     public string $email;
+    public string $gender;
+    public string $date_of_birth;
 
     public function rules(): array
     {
@@ -20,8 +22,10 @@ new class extends Component {
                 'email',
                 Rule::unique('users')->ignore(auth()->user()),
             ],
-            'first_name' => 'required|string|min:5',
-            'last_name' => 'required|string|min:5',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'gender' => 'required|string',
+            'date_of_birth' => 'required|date',
         ];
     }
 
@@ -30,6 +34,8 @@ new class extends Component {
         $this->first_name = auth()->user()->profile->first_name;
         $this->last_name = auth()->user()->profile->last_name;
         $this->email = auth()->user()->email;
+        $this->gender = auth()->user()->profile->gender ? auth()->user()->profile->gender : '';
+        $this->date_of_birth = auth()->user()->profile->date_of_birth ? auth()->user()->profile->date_of_birth : '';
     }
 
     public function save(): void
@@ -42,7 +48,9 @@ new class extends Component {
 
         auth()->user()->profile->update([
             'first_name' => ucwords($this->first_name),
-            'last_name' => ucwords($this->last_name)
+            'last_name' => ucwords($this->last_name),
+            'gender' => ucwords($this->gender),
+            'date_of_birth' => ucwords($this->date_of_birth)
         ]);
 
         toast()
@@ -65,6 +73,11 @@ new class extends Component {
                           :messages="$errors->get('first_name')"/>
             <x-text-input name="Last Name" id="last_name" wire:model="last_name" :messages="$errors->get('last_name')"/>
             <x-text-input name="E-Mail" id="email" wire:model.live="email" :messages="$errors->get('email')"/>
+            <x-select name="Gender" id="gender" wire:model="gender" :messages="$errors->get('gender')">
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+            </x-select>
+            <x-date  name="Date" id="date_of_birth" wire:model="date_of_birth" :messages="$errors->get('date_of_birth')"/>
             <div class="flex justify-end">
                 <x-button tag="button" wire:click="save()" rounded="md" color="primary" size="md" class="w-40">
                     Save

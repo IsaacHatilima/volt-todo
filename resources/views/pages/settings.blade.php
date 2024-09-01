@@ -2,7 +2,9 @@
 
 use Livewire\Volt\Component;
 use function Laravel\Folio\name;
+use function Laravel\Folio\{middleware};
 
+middleware(['auth']);
 name('settings');
 new class extends Component {
 

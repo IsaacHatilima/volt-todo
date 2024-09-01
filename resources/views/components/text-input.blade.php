@@ -1,6 +1,6 @@
 @props(['disabled' => false, 'name', 'id', 'messages' =>[]])
 
-<label class="w-full form-control">
+<div class="w-full form-control">
     <div class="label">
         <span class="text-black label-text dark:text-gray-300"> {{ $name }} </span>
     </div>
@@ -18,4 +18,4 @@
             </ul>
         @endif
     </div>
-</label>
+</div>

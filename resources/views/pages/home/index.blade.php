@@ -12,10 +12,16 @@ new class extends Component {
 
 <x-layouts.app>
     @volt()
-        <div>
-            @for ($i = 0; $i < 550; $i++)
-                <h1>Hello</h1>
-            @endfor
+        <div class="grid md:grid-cols-3 gap-2">
+            <x-card>
+                <h1>Todo</h1>
+            </x-card>
+            <x-card>
+                <h1>Todo</h1>
+            </x-card>
+            <x-card>
+                <h1>Todo</h1>
+            </x-card>
 
         </div>
     @endvolt
