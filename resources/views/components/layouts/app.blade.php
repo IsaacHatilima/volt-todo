@@ -11,9 +11,10 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="icon" href="https://isaachatilima.com/images/kodkon_logo.png">
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
         <script>
-            // On page load or when changing themes, best to add inline in `head` to avoid FOUC
             if (localStorage.getItem('color-theme') === 'dark') {
                 document.documentElement.classList.add('dark');
             } else {
@@ -22,7 +23,7 @@
         </script>
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css'])
     </head>
     <body class="font-sans antialiased bg-slate-50 dark:bg-gray-900">
         <livewire:toasts />
@@ -35,6 +36,11 @@
                 </div>
             </main>
         </div>
+
+        @vite(['resources/js/app.js' ])
+
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
         <script>
             let themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
             let themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
