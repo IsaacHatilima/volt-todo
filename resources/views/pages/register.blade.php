@@ -7,13 +7,13 @@ use function Laravel\Folio\name;
 
 name('register');
 new class extends Component {
-    #[Validate('required|string|min:5', as: 'First Name')]
+    #[Validate('required|string', as: 'First Name')]
     public string $first_name;
 
-    #[Validate('required|string|min:5', as: 'First Name')]
+    #[Validate('required|string', as: 'Last Name')]
     public string $last_name;
 
-    #[Validate('required|email|min:5|unique:users,email', as: 'E-Mail')]
+    #[Validate('required|email|unique:users,email', as: 'E-Mail')]
     public string $email;
 
     #[Validate('required', message: '→ Password is required')]

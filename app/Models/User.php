@@ -7,6 +7,8 @@ use App\Observers\UserObserver;
 use App\Traits\ModelHelper;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -48,4 +50,20 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
+
+    public function todos(): HasMany
+    {
+        return $this->hasMany(Todo::class);
+    }
+
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function todoTasks(): HasManyThrough
+    {
+        return $this->hasManyThrough(Task::class, Todo::class);
+    }
+
 }

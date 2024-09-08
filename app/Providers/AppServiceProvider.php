@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Task;
+use App\Models\Todo;
+use App\Policies\TaskPolicy;
+use App\Policies\TodoPolicy;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -22,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
         RateLimiter::for('login-attempt', function (Request $request) {
             $ip = $request->ip();
 
