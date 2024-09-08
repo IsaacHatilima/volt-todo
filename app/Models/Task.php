@@ -6,33 +6,32 @@ use App\Traits\ModelHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Todo extends Model
+class Task extends Model
 {
-    use HasFactory, ModelHelper;
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+    use ModelHelper, HasFactory;
 
     protected $guarded = [
         'id',
         'public_id',
     ];
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function todo(): BelongsTo
+    {
+        return $this->belongsTo(Todo::class);
+    }
+
     protected function casts(): array
     {
         return [
+            'public_id' => 'string',
             'start_date' => 'date',
             'end_date' => 'date',
         ];
-    }
-
-    public function tasks(): HasMany
-    {
-        return $this->hasMany(Task::class);
     }
 }

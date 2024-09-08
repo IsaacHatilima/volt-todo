@@ -7,20 +7,21 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('todos', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->uuid('public_id');
-            $table->string('name');
             $table->foreignId('user_id');
-            $table->enum('status', ['Pending', 'In Progress', 'Completed'])->default('Pending');
+            $table->foreignId('todo_id');
+            $table->string('name');
             $table->date('start_date');
             $table->date('end_date');
+            $table->enum('status', ['Pending', 'In Progress', 'Completed'])->default('Pending');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('todos');
+        Schema::dropIfExists('tasks');
     }
 };

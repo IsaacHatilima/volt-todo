@@ -22,7 +22,7 @@ new class extends Component {
     #[Computed]
     public function todos()
     {
-        return auth()->user()->todo;
+        return auth()->user()->todos;
     }
 
     public function save(): void
@@ -33,7 +33,7 @@ new class extends Component {
             'end_date' => 'required|date',
         ]);
 
-        $entry = auth()->user()->todo()->create(
+        $entry = auth()->user()->todos()->create(
             [
                 'name' => ucwords($this->name),
                 'start_date' => $this->start_date,

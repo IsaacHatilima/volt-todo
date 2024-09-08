@@ -13,7 +13,7 @@ new class extends Component {
 <x-layouts.app>
     @volt()
         <div class="grid md:grid-cols-3 gap-2">
-            @foreach(auth()->user()->todo as $todo)
+            @foreach(auth()->user()->todos as $todo)
                 <x-card class="{{ $loop->first ? '' : 'mt-2' }}">
                     <h1 class="text-black text-2xl font-bold flex items-center">
                         <a href="todo/{{ $todo->public_id }}">{{ $todo->name }}</a>
